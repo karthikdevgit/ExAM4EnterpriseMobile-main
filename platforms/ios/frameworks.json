@@ -1,0 +1,17 @@
+{
+    "WebKit.framework": 2,
+    "libxml2.tbd": 1,
+    "libz.tbd": 1,
+    "AddressBook.framework": 1,
+    "AddressBookUI.framework": 1,
+    "CoreLocation.framework": 2,
+    "Foundation.framework": 1,
+    "MessageUI.framework": 1,
+    "QuartzCore.framework": 1,
+    "Security.framework": 2,
+    "SystemConfiguration.framework": 3,
+    "UIKit.framework": 1,
+    "ImageIO.framework": 1,
+    "CoreTelephony.framework": 1,
+    "PushKit.framework": 1
+}

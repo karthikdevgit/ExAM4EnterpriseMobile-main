@@ -1,0 +1,179 @@
+PODS:
+  - Cordova (5.1.1):
+    - Cordova/Cordova (= 5.1.1)
+  - Cordova/Cordova (5.1.1)
+  - FirebaseAnalytics (4.2.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.20):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.0.8):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
+  - FMDB/SQLCipher (2.7.5):
+    - SQLCipher
+  - GoogleToolboxForMac/Defines (2.3.2)
+  - GoogleToolboxForMac/Logger (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.2)":
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - MobileSync (8.2.0):
+    - MobileSync/MobileSync (= 8.2.0)
+  - MobileSync/MobileSync (8.2.0):
+    - SmartStore (~> 8.2.0)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - Protobuf (3.21.12)
+  - SalesforceAnalytics (8.2.0):
+    - SalesforceAnalytics/SalesforceAnalytics (= 8.2.0)
+  - SalesforceAnalytics/SalesforceAnalytics (8.2.0):
+    - SalesforceSDKCommon (~> 8.2.0)
+  - SalesforceHybridSDK (8.2.0):
+    - SalesforceHybridSDK/SalesforceHybridSDK (= 8.2.0)
+  - SalesforceHybridSDK/SalesforceHybridSDK (8.2.0):
+    - Cordova
+    - MobileSync (~> 8.2.0)
+  - SalesforceSDKCommon (8.2.0):
+    - SalesforceSDKCommon/SalesforceSDKCommon (= 8.2.0)
+  - SalesforceSDKCommon/SalesforceSDKCommon (8.2.0)
+  - SalesforceSDKCore (8.2.0):
+    - SalesforceSDKCore/SalesforceSDKCore (= 8.2.0)
+  - SalesforceSDKCore/SalesforceSDKCore (8.2.0):
+    - SalesforceAnalytics (~> 8.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/arc (= 8.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/base (= 8.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/no-arc (= 8.2.0)
+  - SalesforceSDKCore/SalesforceSDKCore/arc (8.2.0):
+    - SalesforceAnalytics (~> 8.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/base
+    - SalesforceSDKCore/SalesforceSDKCore/no-arc
+  - SalesforceSDKCore/SalesforceSDKCore/base (8.2.0):
+    - SalesforceAnalytics (~> 8.2.0)
+  - SalesforceSDKCore/SalesforceSDKCore/no-arc (8.2.0):
+    - SalesforceAnalytics (~> 8.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/base
+  - SmartStore (8.2.0):
+    - SmartStore/SmartStore (= 8.2.0)
+  - SmartStore/SmartStore (8.2.0):
+    - FMDB/SQLCipher (~> 2.7.5)
+    - SalesforceSDKCore (~> 8.2.0)
+    - SQLCipher/fts (~> 4.4.0)
+  - SQLCipher (4.4.0):
+    - SQLCipher/standard (= 4.4.0)
+  - SQLCipher/common (4.4.0)
+  - SQLCipher/fts (4.4.0):
+    - SQLCipher/common
+  - SQLCipher/standard (4.4.0):
+    - SQLCipher/common
+
+DEPENDENCIES:
+  - Cordova (from `https://github.com/forcedotcom/cordova-ios`, branch `cordova_5.1.1_sdk`)
+  - FirebaseMessaging (~> 2.0.0)
+  - FMDB/SQLCipher (from `https://github.com/ccgus/fmdb`, tag `2.7.5`)
+  - MobileSync (from `https://github.com/forcedotcom/SalesforceMobileSDK-iOS`, tag `v8.2.0`)
+  - SalesforceAnalytics (from `https://github.com/forcedotcom/SalesforceMobileSDK-iOS`, tag `v8.2.0`)
+  - SalesforceHybridSDK (from `https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid`, tag `v8.2.0`)
+  - SalesforceSDKCommon (from `https://github.com/forcedotcom/SalesforceMobileSDK-iOS`, tag `v8.2.0`)
+  - SalesforceSDKCore (from `https://github.com/forcedotcom/SalesforceMobileSDK-iOS`, tag `v8.2.0`)
+  - SmartStore (from `https://github.com/forcedotcom/SalesforceMobileSDK-iOS`, tag `v8.2.0`)
+  - SQLCipher/fts (from `https://github.com/sqlcipher/sqlcipher`, tag `v4.4.0`)
+
+SPEC REPOS:
+  trunk:
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleToolboxForMac
+    - nanopb
+    - Protobuf
+
+EXTERNAL SOURCES:
+  Cordova:
+    :branch: cordova_5.1.1_sdk
+    :git: https://github.com/forcedotcom/cordova-ios
+  FMDB:
+    :git: https://github.com/ccgus/fmdb
+    :tag: 2.7.5
+  MobileSync:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SalesforceAnalytics:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SalesforceHybridSDK:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid
+    :tag: v8.2.0
+  SalesforceSDKCommon:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SalesforceSDKCore:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SmartStore:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SQLCipher:
+    :git: https://github.com/sqlcipher/sqlcipher
+    :tag: v4.4.0
+
+CHECKOUT OPTIONS:
+  Cordova:
+    :commit: 13cfd63009a2047dc413da2ccbec8d587bde77a6
+    :git: https://github.com/forcedotcom/cordova-ios
+  FMDB:
+    :git: https://github.com/ccgus/fmdb
+    :tag: 2.7.5
+  MobileSync:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SalesforceAnalytics:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SalesforceHybridSDK:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid
+    :tag: v8.2.0
+  SalesforceSDKCommon:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SalesforceSDKCore:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SmartStore:
+    :git: https://github.com/forcedotcom/SalesforceMobileSDK-iOS
+    :tag: v8.2.0
+  SQLCipher:
+    :git: https://github.com/sqlcipher/sqlcipher
+    :tag: v4.4.0
+
+SPEC CHECKSUMS:
+  Cordova: 0b33404e4cd183ccae290842d2862eb97ed1be39
+  FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
+  FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
+  FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
+  MobileSync: 93be4bba474f5b4ec497fe6e3386f6c3b8e86ca9
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  Protobuf: 120350fc38646e2dedc26f49ecba778184ea1de2
+  SalesforceAnalytics: f4195a16275e64b3b0390ee57c98ec5a33b85a0b
+  SalesforceHybridSDK: 2753c12cd05d46f3cf3e64b3f0e2bf8579c4e5b7
+  SalesforceSDKCommon: 19e57ca87216dabecb4c802c0ff2760544068815
+  SalesforceSDKCore: afc6b8c76e98f53ac19d4b354ffa8f5e22e54dd1
+  SmartStore: 6841a70fbd3fbc32a7127e1fe3d439102abda3ac
+  SQLCipher: e434ed542b24f38ea7b36468a13f9765e1b5c072
+
+PODFILE CHECKSUM: c6a73be5a7de039b27b1a72d2040d42924bb489f
+
+COCOAPODS: 1.11.3

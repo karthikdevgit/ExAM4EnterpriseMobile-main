@@ -1,0 +1,8 @@
+
+<ion-radio-group [formControlName]="eachQuestionDetail.Name">
+  <ng-container *ngFor="let selOption of optionsArr">
+    <ion-radio [value]="selOption" (click)="checkValue($event,selOption,eachQuestionDetail)">
+    </ion-radio>
+    {{ selOption }}
+  </ng-container>
+</ion-radio-group>

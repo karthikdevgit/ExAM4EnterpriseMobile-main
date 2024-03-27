@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.salesforce"
+        version="8.1.0">
+
+  <name>SalesforceMobileSDK Plugins</name>
+  <description>SalesforceMobileSDK Plugins</description>
+  <license>Apache 2.0</license>
+  <keywords>salesforce,oauth,smartstore,mobilesync</keywords>
+  <repo>https://github.com/forcedotcom/SalesforceMobileSDK-CordovaPlugin</repo>
+
+  <js-module src="www/com.salesforce.plugin.oauth.js" name="plugin.oauth"></js-module>
+  <js-module src="www/com.salesforce.plugin.network.js" name="plugin.network"></js-module>
+  <js-module src="www/com.salesforce.plugin.sdkinfo.js" name="plugin.sdkinfo"></js-module>
+  <js-module src="www/com.salesforce.plugin.smartstore.js" name="plugin.smartstore">
+    <clobbers target="navigator.smartstore" />
+  </js-module>
+  <js-module src="www/com.salesforce.plugin.smartstore.client.js" name="plugin.smartstore.client">
+    <clobbers target="navigator.smartstoreClient" />
+  </js-module>
+  <js-module src="www/com.salesforce.plugin.sfaccountmanager.js" name="plugin.sfaccountmanager"></js-module>
+  <js-module src="www/com.salesforce.plugin.mobilesync.js" name="plugin.mobilesync"></js-module>
+  <js-module src="www/com.salesforce.util.bootstrap.js" name="util.bootstrap"></js-module>
+  <js-module src="www/com.salesforce.util.event.js" name="util.event"></js-module>
+  <js-module src="www/com.salesforce.util.exec.js" name="util.exec"></js-module>
+  <js-module src="www/com.salesforce.util.logger.js" name="util.logger"></js-module>
+  <js-module src="www/com.salesforce.util.promiser.js" name="util.promiser"></js-module>
+  <js-module src="www/com.salesforce.util.push.js" name="util.push"></js-module>
+
+  <engines>
+    <engine name="cordova-android" version="8.1.0" />
+    <engine name="cordova-ios" version="5.1.1" />
+  </engines>
+
+  <!-- Specific versions of dependencies required by the Mobile SDK plugin -->
+  <dependency id="cordova-plugin-whitelist" version="1.2.0" />
+
+  <!-- ios -->
+  <platform name="ios">
+
+    <!-- Required by the Mobile SDK plugin for WKWebView -->
+    <dependency id="cordova-plugin-wkwebview-engine" url="https://github.com/apache/cordova-plugin-wkwebview-engine" commit="1.1.4" />
+
+    <!-- Required by the Mobile SDK plugin for Cocoapods -->
+    <dependency id="cordova-plugin-cocoapod-support" />
+
+    <config-file target="config.xml" parent="/*">
+      <preference name="BackupWebStorage" value="local" />
+      <preference name="deployment-target" value="12.2" />
+      <preference name="WKWebViewOnly" value="true" />
+
+      <!-- To allow XHR requests with the new Whitelist plugin -->
+      <allow-navigation href="https://localhost" subdomains="true" />
+      <allow-navigation href="https://*.force.com" subdomains="true" />
+      <allow-navigation href="https://*.salesforce.com" subdomains="true" />
+      <allow-navigation href="https://*.visualforce.com" subdomains="true" />
+      <allow-navigation href="https://*.documentforce.com" subdomains="true" />
+      <allow-navigation href="https://*.salesforce-communities.com" subdomains="true" />
+
+      <!-- For legacy apps that don't use CSP -->
+      <access origin="https://localhost" subdomains="true" />
+      <access origin="https://*.force.com" subdomains="true" />
+      <access origin="https://*.salesforce.com" subdomains="true" />
+      <access origin="https://*.visualforce.com" subdomains="true" />
+      <access origin="https://*.documentforce.com" subdomains="true" />
+      <access origin="https://*.salesforce-communities.com" subdomains="true" />
+
+      <feature name="com.salesforce.oauth"><param name="ios-package" value="SalesforceOAuthPlugin"/></feature>
+      <feature name="com.salesforce.network"><param name="ios-package" value="SFNetworkPlugin"/></feature>
+      <feature name="com.salesforce.sdkinfo"><param name="ios-package" value="SFSDKInfoPlugin"/></feature>
+      <feature name="com.salesforce.sfaccountmanager"><param name="ios-package" value="SFAccountManagerPlugin"/></feature>
+      <feature name="com.salesforce.smartstore"><param name="ios-package" value="SFSmartStorePlugin"/></feature>
+      <feature name="com.salesforce.mobilesync"><param name="ios-package" value="SFMobileSyncPlugin"/></feature>
+    </config-file>
+
+    <!-- Entitlements -->
+    <config-file parent="aps-environment" target="*/Entitlements-Debug.plist">
+      <string>development</string>
+    </config-file>
+    <config-file parent="aps-environment" target="*/Entitlements-Release.plist">
+      <string>production</string>
+    </config-file>
+
+    <!-- Header files -->
+    <header-file src="src/ios/classes/AppDelegate+SalesforceHybridSDK.h" />
+    <header-file src="src/ios/classes/UIApplication+SalesforceHybridSDK.h" />
+    <header-file src="src/ios/classes/InitialViewController.h" />
+
+    <!-- Source files -->
+    <source-file src="src/ios/classes/AppDelegate+SalesforceHybridSDK.m" />
+    <source-file src="src/ios/classes/UIApplication+SalesforceHybridSDK.m" />
+    <source-file src="src/ios/classes/InitialViewController.m" />
+
+    <!-- Resource bundles -->
+    <resource-file src="src/ios/resources/SalesforceSDKResources.bundle" />
+    <resource-file src="src/ios/resources/Images.xcassets" />
+    <resource-file src="src/ios/resources/SalesforceSDKAssets.xcassets" />
+
+    <!-- Mobile SDK frameworks pod specs -->
+    <pods-config ios-min-version="12.2" use-frameworks="true">
+      <source url="https://cdn.cocoapods.org/"/>
+    </pods-config>
+    <pod name="SalesforceHybridSDK" git="https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid" tag="v8.2.0" />
+    <pod name="Cordova" git="https://github.com/forcedotcom/cordova-ios" branch="cordova_5.1.1_sdk" />
+    <pod name="MobileSync" git="https://github.com/forcedotcom/SalesforceMobileSDK-iOS" tag="v8.2.0" />
+    <pod name="SmartStore" git="https://github.com/forcedotcom/SalesforceMobileSDK-iOS" tag="v8.2.0" />
+    <pod name="FMDB/SQLCipher" git="https://github.com/ccgus/fmdb" tag="2.7.5" />
+    <pod name="SQLCipher/fts" git="https://github.com/sqlcipher/sqlcipher" tag="v4.4.0" />
+    <pod name="SalesforceSDKCore" git="https://github.com/forcedotcom/SalesforceMobileSDK-iOS" tag="v8.2.0" />
+    <pod name="SalesforceAnalytics" git="https://github.com/forcedotcom/SalesforceMobileSDK-iOS" tag="v8.2.0" />
+    <pod name="SalesforceSDKCommon" git="https://github.com/forcedotcom/SalesforceMobileSDK-iOS" tag="v8.2.0" />
+    <!--
+
+      Replace 'dev' in the 'branch' tag above with the current release version tag while releasing.
+
+      For example,
+        branch="dev"
+      would become
+        tag="v8.1.0"
+
+    -->
+
+    <!-- System frameworks -->
+    <framework src="libxml2.tbd" />
+    <framework src="libz.tbd" />
+    <framework src="AddressBook.framework" weak="true" />
+    <framework src="AddressBookUI.framework" weak="true" />
+    <framework src="CoreGraphics.framework" weak="true" />
+    <framework src="CoreLocation.framework" weak="true" />
+    <framework src="Foundation.framework" weak="true" />
+    <framework src="MessageUI.framework" weak="true" />
+    <framework src="MobileCoreServices.framework" weak="true" />
+    <framework src="QuartzCore.framework" weak="true" />
+    <framework src="Security.framework" weak="true" />
+    <framework src="SystemConfiguration.framework" weak="true" />
+    <framework src="UIKit.framework" weak="true" />
+    <framework src="AssetsLibrary.framework" weak="true" />
+    <framework src="ImageIO.framework" weak="true" />
+  </platform>
+
+  <!-- android -->
+  <platform name="android">
+
+    <!-- Fixes the activity tag in the Manifest -->
+    <edit-config file="app/src/main/AndroidManifest.xml" target="/manifest/application/activity" mode="merge">
+      <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+          android:label="@string/app_name"
+          android:name="com.salesforce.androidsdk.phonegap.ui.SalesforceDroidGapActivity"
+          android:theme="@android:style/Theme.Black.NoTitleBar"
+          android:launchMode="singleTop" 
+          android:allowBackup="false" />
+    </edit-config>
+
+    <!-- Fixes the application tag in the Manifest -->
+    <edit-config file="app/src/main/AndroidManifest.xml" target="/manifest/application" mode="merge">
+      <application android:hardwareAccelerated="true"
+          android:icon="@drawable/sf__icon"
+          android:label="@string/app_name"
+          android:manageSpaceActivity="com.salesforce.androidsdk.ui.ManageSpaceActivity"
+          android:name="com.salesforce.androidsdk.phonegap.app.HybridApp" />
+    </edit-config>
+
+    <config-file target="res/xml/config.xml" parent="/*">
+
+      <!-- To allow XHR requests with the new Whitelist plugin -->
+      <allow-navigation href="https://localhost" />
+      <allow-navigation href="https://*.force.com" />
+      <allow-navigation href="https://*.salesforce.com" />
+      <allow-navigation href="https://*.visualforce.com" />
+      <allow-navigation href="https://*.documentforce.com" />
+      <allow-navigation href="https://*.salesforce-communities.com" />
+
+      <!-- For legacy apps that don't use CSP -->
+      <access origin="https://localhost" />
+      <access origin="https://*.force.com" />
+      <access origin="https://*.salesforce.com" />
+      <access origin="https://*.visualforce.com" />
+      <access origin="https://*.documentforce.com" />
+      <access origin="https://*.salesforce-communities.com" />
+
+      <feature name="com.salesforce.oauth"><param name="android-package" value="com.salesforce.androidsdk.phonegap.plugin.SalesforceOAuthPlugin"/></feature>
+      <feature name="com.salesforce.network"><param name="android-package" value="com.salesforce.androidsdk.phonegap.plugin.SalesforceNetworkPlugin"/></feature>
+      <feature name="com.salesforce.sfaccountmanager"><param name="android-package" value="com.salesforce.androidsdk.phonegap.plugin.SFAccountManagerPlugin"/></feature>
+      <feature name="com.salesforce.sdkinfo"><param name="android-package" value="com.salesforce.androidsdk.phonegap.plugin.SDKInfoPlugin"/></feature>
+      <feature name="com.salesforce.smartstore"><param name="android-package" value="com.salesforce.androidsdk.phonegap.plugin.SmartStorePlugin"/></feature>
+      <feature name="com.salesforce.mobilesync"><param name="android-package" value="com.salesforce.androidsdk.phonegap.plugin.MobileSyncPlugin"/></feature>
+    </config-file>
+
+    <config-file target="res/values/strings.xml" parent="/resources">
+      <string name="account_type">$PACKAGE_NAME.login</string>
+      <string name="app_package">$PACKAGE_NAME</string>
+    </config-file>
+
+    <hook type="after_plugin_install" src="tools/postinstall-android.js" />
+  </platform>
+</plugin>

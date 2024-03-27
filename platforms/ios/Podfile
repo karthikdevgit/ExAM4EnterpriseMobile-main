@@ -1,0 +1,15 @@
+platform :ios, '12.2'
+use_frameworks!
+source 'https://cdn.cocoapods.org/'
+target 'ExAM4Enterprise' do
+	pod 'SalesforceHybridSDK', :git => 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid', :tag => 'v8.2.0'
+	pod 'Cordova', :git => 'https://github.com/forcedotcom/cordova-ios', :branch => 'cordova_5.1.1_sdk'
+	pod 'MobileSync', :git => 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS', :tag => 'v8.2.0'
+	pod 'SmartStore', :git => 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS', :tag => 'v8.2.0'
+	pod 'FMDB/SQLCipher', :git => 'https://github.com/ccgus/fmdb', :tag => '2.7.5'
+	pod 'SQLCipher/fts', :git => 'https://github.com/sqlcipher/sqlcipher', :tag => 'v4.4.0'
+	pod 'SalesforceSDKCore', :git => 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS', :tag => 'v8.2.0'
+	pod 'SalesforceAnalytics', :git => 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS', :tag => 'v8.2.0'
+	pod 'SalesforceSDKCommon', :git => 'https://github.com/forcedotcom/SalesforceMobileSDK-iOS', :tag => 'v8.2.0'
+	pod 'FirebaseMessaging', '~> 2.0.0'
+end

@@ -1,0 +1,68 @@
+{
+	"pods": {
+		"SalesforceHybridSDK": {
+			"type": "pod",
+			"name": "SalesforceHybridSDK",
+			"git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid",
+			"tag": "v8.2.0"
+		},
+		"Cordova": {
+			"type": "pod",
+			"name": "Cordova",
+			"git": "https://github.com/forcedotcom/cordova-ios",
+			"branch": "cordova_5.1.1_sdk"
+		},
+		"MobileSync": {
+			"type": "pod",
+			"name": "MobileSync",
+			"git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS",
+			"tag": "v8.2.0"
+		},
+		"SmartStore": {
+			"type": "pod",
+			"name": "SmartStore",
+			"git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS",
+			"tag": "v8.2.0"
+		},
+		"FMDB/SQLCipher": {
+			"type": "pod",
+			"name": "FMDB/SQLCipher",
+			"git": "https://github.com/ccgus/fmdb",
+			"tag": "2.7.5"
+		},
+		"SQLCipher/fts": {
+			"type": "pod",
+			"name": "SQLCipher/fts",
+			"git": "https://github.com/sqlcipher/sqlcipher",
+			"tag": "v4.4.0"
+		},
+		"SalesforceSDKCore": {
+			"type": "pod",
+			"name": "SalesforceSDKCore",
+			"git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS",
+			"tag": "v8.2.0"
+		},
+		"SalesforceAnalytics": {
+			"type": "pod",
+			"name": "SalesforceAnalytics",
+			"git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS",
+			"tag": "v8.2.0"
+		},
+		"SalesforceSDKCommon": {
+			"type": "pod",
+			"name": "SalesforceSDKCommon",
+			"git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS",
+			"tag": "v8.2.0"
+		},
+		"FirebaseMessaging": {
+			"type": "podspec",
+			"src": "FirebaseMessaging",
+			"spec": "~> 2.0.0"
+		}
+	},
+	"sources": {
+		"https://cdn.cocoapods.org/": true
+	},
+	"iosMinVersion": "12.2",
+	"useFrameworks": true
+}

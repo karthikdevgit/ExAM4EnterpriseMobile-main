@@ -1,0 +1,9 @@
+<p>
+  button-question works!
+</p>
+<ion-input [hidden]="true" type="text" [formControlName]="eachQuestionDetail.Name" [(ngModel)]=" amIdWithresponse[amId][eachQuestionDetail.Id]"></ion-input>
+<div *ngFor="let  selOption of optionsArr ;let i=index ">
+  <ion-button slot="start" color="primary"  (click)="setSelectedOption(i,selOption,eachQuestionDetail)" >{{ selOption }}</ion-button>
+
+</div>
+<!--[(ngModel)]=" amIdWithresponse[amId][eachQuestionDetail.Id]"-->

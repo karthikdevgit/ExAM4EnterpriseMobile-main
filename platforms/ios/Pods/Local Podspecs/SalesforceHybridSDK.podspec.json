@@ -1,0 +1,58 @@
+{
+  "name": "SalesforceHybridSDK",
+  "version": "8.2.0",
+  "summary": "Salesforce Mobile SDK for iOS",
+  "homepage": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid",
+  "license": {
+    "type": "Salesforce.com Mobile SDK License",
+    "file": "LICENSE.md"
+  },
+  "authors": {
+    "Bharath Hariharan": "bhariharan@salesforce.com"
+  },
+  "platforms": {
+    "ios": "12.2"
+  },
+  "source": {
+    "git": "https://github.com/forcedotcom/SalesforceMobileSDK-iOS-Hybrid.git",
+    "tag": "v8.2.0",
+    "submodules": true
+  },
+  "requires_arc": true,
+  "default_subspecs": "SalesforceHybridSDK",
+  "subspecs": [
+    {
+      "name": "SalesforceHybridSDK",
+      "dependencies": {
+        "MobileSync": [
+          "~>8.2.0"
+        ],
+        "Cordova": [
+
+        ]
+      },
+      "source_files": [
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/**/*.{h,m}",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/SalesforceHybridSDK.h"
+      ],
+      "public_header_files": [
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFAdditions/CDVPlugin+SFAdditions.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFAccountManagerPlugin/SFAccountManagerPlugin.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFForcePlugin/SFForcePlugin.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/SFHybridViewConfig.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/SFHybridViewController.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/SFLocalhostSubstitutionCache.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFMobileSyncPlugin/SFMobileSyncPlugin.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFNetworkPlugin/SFNetworkPlugin.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/SFSDKHybridLogger.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SDKInfo/SFSDKInfoPlugin.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFSmartStore/SFSmartStorePlugin.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/SalesforceHybridSDK.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/SalesforceHybridSDKManager.h",
+        "libs/SalesforceHybridSDK/SalesforceHybridSDK/Classes/Plugins/SFOAuthPlugin/SalesforceOAuthPlugin.h"
+      ],
+      "prefix_header_contents": "",
+      "requires_arc": true
+    }
+  ]
+}

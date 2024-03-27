@@ -1,0 +1,17 @@
+<p>
+  list-question works!
+</p>
+ <!-- <ion-list >
+  <ng-container formControlName="{{ eachQuestionDetail.Name }}" *ngFor="let selOption of optionsArr">
+    <ion-item [class.selected]="isSelected(selOption)" (click)="checkValue($event,selOption, eachQuestionDetail)">
+      <ion-label>{{ selOption }}</ion-label> 
+    </ion-item>
+  </ng-container>
+</ion-list>  -->
+
+<ion-list >
+  <ion-item *ngFor="let selOption of optionsArr" >
+    <ion-label>{{ selOption }}</ion-label>
+    <ion-radio [class.selected]="isSelected(selOption)"[value]="selOption" formControlName="{{ eachQuestionDetail.Name }}"  (click)="checkValue($event,selOption, eachQuestionDetail)"></ion-radio>
+  </ion-item>
+</ion-list>

@@ -1,0 +1,11 @@
+<p>
+  horizontal-picklist-question works!
+</p>
+<ion-input [hidden]="true" type="text" [formControlName]="eachQuestionDetail.Name" [(ngModel)]=" amIdWithresponse[amId][eachQuestionDetail.Id]"></ion-input>
+
+<ion-list >
+  
+  <ion-select  (ionChange)="checkValue($event, eachQuestionDetail)" >
+    <ion-select-option  *ngFor="let selOption of optionsArr" >{{ selOption }}</ion-select-option>
+  </ion-select>
+</ion-list>

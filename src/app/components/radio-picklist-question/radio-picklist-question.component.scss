@@ -1,0 +1,39 @@
+
+ /* Style the radio button */
+ ion-radio {
+    /* Set width and height to 0 to hide the default radio button */
+    width: 0;
+    height: 0;
+  }
+  
+  /* Style the custom radio button container */
+  ion-radio::part(container) {
+    /* Set the container to be a circle */
+    border-radius: 50%;
+    width: 20px; /* Set the width of the circle */
+    height: 20px; /* Set the height of the circle */
+    border: 2px solid #ddd; /* Border color and width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative; /* Add this to position the dot relative to the container */
+  }
+  
+  /* Style the selected dot */
+  ion-radio.radio-checked::part(container)::after {
+    content: ''; /* Create a pseudo-element for the dot */
+    background-color: #656269; /* Color of the selected dot */
+    border-radius: 50%; /* Make the dot a circle */
+    width: 10px; /* Set the width of the dot */
+    height: 10px; /* Set the height of the dot */
+    position: absolute; /* Position the dot relative to the container */
+    top: 50%; /* Center the dot vertically */
+    left: 50%; /* Center the dot horizontally */
+    transform: translate(-50%, -50%); /* Move the dot back by half its size to center it */
+  }
+  
+  /* Hide the default check mark */
+  ion-radio::part(mark) {
+    display: none;
+  }

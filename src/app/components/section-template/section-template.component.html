@@ -1,0 +1,182 @@
+ <div *ngFor="let QuestionDetail of sectionaIdWithquestionTemplateRecords[sectionDetail.Id]">
+      <app-question-template [questiondetail]="QuestionDetail"></app-question-template>
+     
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Button'" >
+        <app-button-question 
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-button-question>
+        
+      </div>
+      
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Text'" >
+        <app-text-question 
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"
+        ></app-text-question>
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Email'" >
+        <app-email-question 
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-email-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Checkbox'" >
+        <app-checkbox-question 
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-checkbox-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'RadioPicklist'" >
+        <app-radio-picklist-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-radio-picklist-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'List'" >
+        <app-list-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-list-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Dropdown Picklist'" >
+        <app-drop-down-picklist-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-drop-down-picklist-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Textarea'" >
+        <app-textarea-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-textarea-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Rich Text'" >
+        <app-rich-text-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-rich-text-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Number'" >
+        <app-number-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-number-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Phone Number'" >
+        <app-phone-number-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-phone-number-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Date'" >
+        <app-date-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-date-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Date Time'" >
+        <app-date-time-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-date-time-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Multimedia'" >
+        <app-multimedia-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-multimedia-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'MultiselectPicklist'" >
+        <app-multi-select-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-multi-select-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Likert'" >
+        <app-likert-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-likert-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Horizontal Radiopicklist'" >
+        <app-horizontal-picklist-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-horizontal-picklist-question>
+        
+      </div>
+      <div  *ngIf="QuestionDetail.ExAM__Question_Type__c == 'Location'" >
+        <app-horizontal-picklist-question
+        [eachQuestionDetail]="QuestionDetail"
+        [amIdWithresponse]="amIdWithresponse"
+        [amresponseformGroup]="amresponseformGroup"
+        [amId]="amId"></app-horizontal-picklist-question>
+        
+      </div>
+  </div>
+  <!--ExAM__Question_Type__c: "RadioPicklist"
+    ExAM__Question_Type__c: "Button"
+    ExAM__Question_Type__c: "Signature"
+    ExAM__Question_Type__c: "File Question - AM"
+    ExAM__Question_Type__c: "File Question - Answer"
+    ExAM__Question_Label__c: "File Upload - Assessable Object - Primary"
+    ExAM__Question_Type__c: "Text"
+    xAM__Do_Not_Create_Answer__c: false
+
+ExAM__Enable_QR_and_Bar_Code_Scanning__c: false
+
+ExAM__Enable_Section_Completion__c: false
+
+ExAM__Is_Dependent__c: false
+
+ExAM__Is_Mandatory__c: false
+
+ExAM__Next_Question__c: "Q-442~Q-446"
+
+ExAM__Question_Label__c: "Ceiling has a sign of structural failure"
+
+ExAM__Question_Type__c: "RadioPicklist"
+
+ExAM__Section_Question__c: "a0w5g000001QB74AAG"
+
+ExAM__Section_Question__r: {attributes: {type: "ExAM__Section_Template__c", url: "/services/data/v60.0/sobjects/ExAM__Section_Template__c/a0w5g000001QB74AAG"}, Id: "a0w5g000001QB74AAG", ExAM__Questionnaire_Section__c: "a0Y5g0000006ZvAEAU", ExAM__Section_label__c: "Unit", ExAM__Rendering_Type__c: "Primary", …}
+
+ExAM__Show_Full_Size_Image_Button_On_Mobile__c: false
+
+ExAM__Subquestion_Label__c: "There is sagging or dropping of the plasterboard sheeting or the cornice.~There is cracking or small circles or blisters (nail pops) on th…"
+
+ExAM__Type__c: "Dependen
+  -->
