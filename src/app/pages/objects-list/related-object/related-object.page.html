@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="previousRleatedScreen()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RelatedObject</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="schemaViewData && schemaViewData[relatedIndex] && schemaViewData[relatedIndex].optionConfigDetailsMap && (schemaViewData[relatedIndex].optionConfigDetailsMap.disableTreeView && schemaViewData[relatedIndex].optionConfigDetailsMap.disableTreeView == 'true')">
+
+    <app-tree-view-not-enabled  [schemaViewData]="schemaViewData" [currentIndex]="relatedIndex"  [parentId]="parentId"></app-tree-view-not-enabled>
+  </div>
+  <div *ngIf="schemaViewData && schemaViewData[relatedIndex] && schemaViewData[relatedIndex].optionConfigDetailsMap && (!schemaViewData[relatedIndex].optionConfigDetailsMap.disableTreeView || schemaViewData[relatedIndex].optionConfigDetailsMap.disableTreeView == 'false')">
+  
+    <app-tree-view-enabled  [schemaViewData]="schemaViewData" [currentIndex]="relatedIndex"  [parentId]="parentId"></app-tree-view-enabled>
+  </div>
+</ion-content>

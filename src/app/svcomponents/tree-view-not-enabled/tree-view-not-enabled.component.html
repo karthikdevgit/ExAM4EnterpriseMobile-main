@@ -1,0 +1,13 @@
+<div *ngIf="currentIndex == 0">
+  <div *ngFor="let parentassObject of schemaViewData[currentIndex].assessableObjs" (click)="allrelatedObject(schemaViewData,currentIndex,parentassObject.Id,parentassObject,false)">
+  <app-each-object-render [eachassessableObject]="parentassObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex" [isfromTreeView]="false"></app-each-object-render>
+
+</div>
+</div>
+<div *ngIf="currentIndex != 0 && parentId && schemaViewData[currentIndex] && schemaViewData[currentIndex].childAssessableObjs && schemaViewData[currentIndex].childAssessableObjs[parentId]">
+  <div *ngFor="let parentassObject of schemaViewData[currentIndex].childAssessableObjs[parentId]"             (click)="allrelatedObject(schemaViewData,currentIndex,parentassObject.Id,parentassObject,false)"
+  >
+    <app-each-object-render [eachassessableObject]="parentassObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex" [isfromTreeView]="false"></app-each-object-render>
+  </div>
+  
+</div>

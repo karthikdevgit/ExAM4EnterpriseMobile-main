@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar class="header-background-color">
+    <ion-title style="color: white;">ExAM Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>  
+  <div class="loadingcontainer" [ngStyle]="{ 'height': deviceheight+'px' }" >
+    <div class="loadingcenter">
+      <img  mode="ios" src="{{imgsrc}}" style="height:{{classReference.imgHeight}}px;width:{{classReference.imgwidth}}px">
+      <h1 style="color:black !important;text-align:center;padding: top 10px;">{{classReference.loadingpercentange}}</h1>
+    </div>
+  </div>  
+</ion-content>
+<ion-footer  >
+  <ion-toolbar style="text-align:center;--border-width:0px !important;" class="customfooter iphone11footerHeight">
+    <a class="slds slds-col slds-button slds-button--brand" style="line-height:2rem !important" type="button" (click)="redirectLogin()" >Cancel Login</a>
+  </ion-toolbar>
+</ion-footer>

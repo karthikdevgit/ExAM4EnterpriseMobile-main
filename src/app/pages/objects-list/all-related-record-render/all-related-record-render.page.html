@@ -1,0 +1,32 @@
+<ion-header>
+<ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="previousRleatedScreen()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>allRelatedRecordRender</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div
+  *ngIf="
+    schemaViewData &&
+    schemaViewData[currentIndex] &&
+    schemaViewData[currentIndex].relatedObjectsIndex &&
+    schemaViewData[currentIndex].relatedObjectsIndex.length > 0
+  "
+>
+  <ion-col
+    *ngFor="
+      let relatedObjectsIndex of schemaViewData[currentIndex]
+        .relatedObjectsIndex
+    "
+  >
+    <div *ngIf="relatedObjectsIndex != 0 && parentId && schemaViewData[relatedObjectsIndex] && schemaViewData[relatedObjectsIndex].childAssessableObjs && schemaViewData[relatedObjectsIndex].childAssessableObjs[parentId]">
+      <div *ngFor="let parentassObject of schemaViewData[relatedObjectsIndex].childAssessableObjs[parentId]">
+        <app-each-object-render [eachassessableObject]="parentassObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex" [isfromTreeView]="false"></app-each-object-render>
+      </div>
+    </div>
+  </ion-col>
+</div>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-row (click)=$event.stopPropagation();openRelatedAMsDetailPage(eachamdetail)
+>
+  <ion-row>
+    <ion-col
+      *ngFor="
+        let amField of schemaViewData[currentIndex].amViewFieldset
+      "
+    >
+      <p *ngIf="eachamdetail && eachamdetail[amField.fieldPath]">
+        {{ amField.label }}<br />{{
+          eachamdetail[amField.fieldPath]
+        }}
+      </p>
+    </ion-col>
+  </ion-row>
+</ion-row> 

@@ -1,0 +1,48 @@
+
+
+  <ion-header color="primary">
+    <ion-toolbar class="header-background-color">
+      <ion-grid>
+        <ion-row >
+          <ion-col size="6">
+            <h3 style="color: white;" >Column</h3>
+          </ion-col>
+          <ion-col size="6">
+            <h3 style="color: white;text-align:right !important" >Sort Order</h3>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content style="--height:330px !important">
+    <div style="overflow-y: scroll;height:200px !important">
+      <ion-list padding *ngFor="let item of listobj; let i = index">
+        <ion-item (click)="selectItem(item,i,$event)">
+          <ion-label>{{ (isfrom && isfrom =='list')?item.Label:item.prop}}</ion-label>
+          <div style="--background:white !important;--color:black;" *ngIf="item.selected"  (click)="checkboxselect(item, i);" slot="end" >
+            <ion-icon *ngIf="item.asc" name="arrow-up-outline" slot="end"></ion-icon>
+            <ion-icon *ngIf="!item.asc" name="arrow-down-outline" slot="end"></ion-icon>
+          </div>
+          <!--<ion-icon *ngIf="item.selected" name="checkmark-outline"></ion-icon> -->
+  
+        </ion-item>
+      </ion-list>
+    </div>
+   
+  </ion-content>
+<ion-footer >
+
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row >
+        <ion-col size="6">
+          <a class="slds slds-col slds-button slds-button--neutral" style="min-width:100% !important;line-height:2rem !important" type="button" (click)="closeModal(true)" >Cancel</a>
+        </ion-col>
+        <ion-col size="6">
+          <a class="slds slds-col slds-button slds-button--brand" style="min-width:100% !important;line-height:2rem !important" type="button" (click)="closeModal('')" >Save</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let a of assessableObjs">
+    <ion-card-header>
+      <ion-item lines="none">
+        <ion-card-title slot="start">{{a.ExAM_AIM__Alias__c === undefined ? '': a.ExAM_AIM__Alias__c}}</ion-card-title>
+        <ion-card-subtitle slot="start">{{a.Name}}</ion-card-subtitle>
+      </ion-item>
+      <ion-row>
+        <div *ngIf = "childObjs[a.Id] !== undefined">
+          <ion-button *ngIf="childObjs[a.Id].length > 1" expand="block">{{childObjs[a.Id].length}} {{childLabelPlural}}</ion-button>
+          <ion-button *ngIf="childObjs[a.Id].length === 1" expand="block">1 {{childLabel}}</ion-button>
+  
+          <ion-button *ngFor="let a of amWithassessableIDMap" expand="block">{{a.ExAM__Assessment_Template_Type__c}}</ion-button>
+  
+        </div>
+        <ion-col>
+          <p>{{schemaViewData[level+1].ViewObjectFieldSet[1].label}}<br></p>
+        </ion-col>
+        <ion-col>
+          <p>{{schemaViewData[level+1].ViewObjectFieldSet[2].label}}<br></p>
+        </ion-col>
+        <ion-col>
+          <p>{{schemaViewData[level+1].ViewObjectFieldSet[3].label}}<br>{{a.RecordType.Name}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,78 @@
+
+<ion-content class="paddingtop" style="width: fit-content;">
+  <form [formGroup]="loginForm" novalidate>  
+  <div class="slds">
+      <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--12-of-12 slds-large-size--12-of-12"  >
+        <div style="flex-wrap:nowrap !important" class="slds-grid slds-wrap">
+            <div class="slds-form-element" style="width: 75%;padding-top:5px;padding-left:5px;">
+              
+              <ion-select [formControlName]="field" class=" borderline" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'picklist' && labelwithfield[field].picklistValues " [(ngModel)]="temprowdetail[field]" (ionChange)="iseditedmethod()" >
+                  <ion-select-option *ngFor="let field of labelwithfield[field].picklistValues" value="{{field.value}}">{{field.label}}
+                  </ion-select-option>
+              </ion-select>             
+              <ion-select [formControlName]="field" class=" borderline" multiple="true"  *ngIf = "labelwithfield[field] && labelwithfield[field].type  && labelwithfield[field].type == 'multipicklist' && labelwithfield[field].picklistValues" [(ngModel)]="temprowdetail[field]" (ionChange)="iseditedmethod()" >
+              <ion-select-option *ngFor="let fielddetail of labelwithfield[field].picklistValues" value="{{fielddetail.value}}">{{fielddetail.label}}
+              </ion-select-option>
+              </ion-select>
+              <ion-list  [formControlName]="field" *ngIf = "labelwithfield[field] && labelwithfield[field].type == 'checkbox'" (ionChange)="iseditedmethod()" >  
+                <ion-item *ngFor="let field of labelwithfield[field].checkboxValues">  
+                  <ion-label>{{field.value}}</ion-label>  
+                  <ion-checkbox [disabled] = "labelwithfield[field] && !labelwithfield[field].updateable"  [(ngModel)]="field.isChecked"></ion-checkbox>  
+                </ion-item>  
+              </ion-list>
+              <ion-input [formControlName]="field" class="borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable"  *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'email'" [(ngModel)]="temprowdetail[field]" type = "email" (ionChange)="iseditedmethod()"></ion-input>
+              <ion-input  [formControlName]="field" class="borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'richtext'" [(ngModel)]="temprowdetail[field]"  (ionChange)="iseditedmethod()"></ion-input>
+              <ion-input [formControlName]="field"  class="borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'text'" [(ngModel)]="temprowdetail[field]"  (ionChange)="iseditedmethod()"></ion-input>
+              <ion-datetime [formControlName]="field" class="borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'time'" displayFormat="HH:mm A" pickerFormat="HH:mm" [(ngModel)]="temprowdetail[field]" type="Time" (ionChange)="iseditedmethod()"></ion-datetime>
+
+              <ion-input [formControlName]="field" class=" borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && (labelwithfield[field].type == 'number' || labelwithfield[field].type == 'phone' || labelwithfield[field].type == 'double' || labelwithfield[field].type == 'int' || labelwithfield[field].type == 'currency')" type="number" [(ngModel)]="temprowdetail[field]" (ionChange)="iseditedmethod()"></ion-input>
+              <ion-checkbox [formControlName]="field" class=" borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'boolean'"  [(ngModel)]="temprowdetail[field]"></ion-checkbox> 
+              <ion-datetime  [formControlName]="field" class=" borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && (labelwithfield[field].type == 'date'|| labelwithfield[field].type =='datetime')" displayFormat="MM/DD/YYYY"  [(ngModel)]="temprowdetail[field]" (ionChange)="iseditedmethod()"></ion-datetime>
+              <ion-input  [formControlName]="field" class=" borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'string'" [(ngModel)]="temprowdetail[field]"  (ionChange)="iseditedmethod()"></ion-input>
+              <ion-textarea [formControlName]="field" class=" borderline" [disabled]="labelwithfield[field] && !labelwithfield[field].updateable" *ngIf = "labelwithfield[field] && labelwithfield[field].type && labelwithfield[field].type == 'textarea'"  [(ngModel)]="temprowdetail[field]" (ionChange)="iseditedmethod()"></ion-textarea> 
+              <div   *ngIf = "labelwithfield[field]  && labelwithfield[field].type == 'reference'  ">
+                                                                    
+                  <ion-searchbar [formControlName]="field" style="width:100%" #searchbar 
+                  (ionBlur)="checkBlur()" [(ngModel)]="searchtext"
+                  (click)="getRecordlist(objectname , searchtext)"
+                  (ionChange)="onInput(objectname, $event.target.value) ;iseditedmethod()"
+                  (ionFocus)="checkFocus()"></ion-searchbar>
+                  <div *ngIf="listobj && !isselected " [ngClass]="(listobj && !isselected)?setheight:''" style="overflow:scroll !important">
+                    <ion-list  slds-size-8-of-12 padding *ngFor="let item of listobj; let i = index" (click)="selecteditem(false,i)">
+                      <ion-item >
+                        <ion-label>{{objectname =='Case'?item.CaseNumber:item.Name}}</ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                  <div style="text-align:center" *ngIf="listobj && !listobj.length ">
+                    <p style="text-align:center;color:rgb(218, 60, 60)">No records found</p>
+                  </div>
+                  
+              </div>
+              <div class="error-message" *ngIf="(isSubmitted && loginForm.controls && loginForm.controls[field] && loginForm.controls[field].errors && loginForm.controls[field].errors.required) || (loginForm.controls && loginForm.controls[field] && loginForm.controls[field].touched && loginForm.controls[field].errors && loginForm.controls[field].errors.required)" >
+                The field is required.
+                </div>
+              <div class="error-message" *ngIf="labelwithfield[field] && labelwithfield[field].type == 'email' && ((isSubmitted && loginForm.controls && loginForm.controls[field] && loginForm.controls[field].errors && loginForm.controls[field].errors.pattern) || (loginForm.controls && loginForm.controls[field] && loginForm.controls[field].touched && loginForm.controls[field].errors && loginForm.controls[field].errors.pattern))" >
+                  Invaild email address
+                </div>
+                <div class="error-message" *ngIf="labelwithfield[field] && (labelwithfield[field].type == 'number' || labelwithfield[field].type == 'phone' || labelwithfield[field].type == 'double' || labelwithfield[field].type == 'int' || labelwithfield[field].type == 'currency') && ((isSubmitted && loginForm.controls && loginForm.controls[field] && loginForm.controls[field].errors && loginForm.controls[field].errors.pattern) || (loginForm.controls && loginForm.controls[field] && loginForm.controls[field].touched && loginForm.controls[field].errors && loginForm.controls[field].errors.pattern))" >
+                  Invaild {{labelwithfield[field].type}}
+                </div>
+          </div>
+              <ion-buttons style="display:inline-block;margin-top:10px" class="buttonstyle">
+                  <ion-button ion-button icon-only (click)="saverecord(temprowdetail,true)">
+                  <ion-icon size="large" style="color:gray" item-right name="checkmark-outline"></ion-icon>
+                  </ion-button>
+              </ion-buttons>
+              <ion-buttons style="display:inline-block;margin-top:10px" class="buttonstyle">
+                  <ion-button ion-button icon-only  (click)="saverecord('',false)">
+                  <ion-icon size="large" style="color:gray" item-right name="close-circle"></ion-icon>
+                  </ion-button>
+              </ion-buttons>
+         
+      </div>
+   </div>
+</div>
+  </form>    
+ 
+</ion-content>

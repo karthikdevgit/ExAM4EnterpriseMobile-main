@@ -1,0 +1,19 @@
+
+<ion-content>
+  <ion-searchbar  style="width:100%" #searchbar 
+  (ionBlur)="checkBlur()" [(ngModel)]="searchtext"
+  (click)="getRecordlist(objectname , searchtext)"
+  (ionChange)="onInput(objectname, $event.target.value)"
+  (ionFocus)="checkFocus()"></ion-searchbar>
+  <div *ngIf="listobj">
+    <ion-list padding *ngFor="let item of listobj; let i = index" (click)="closeModal(false,i)">
+      <ion-item >
+        <ion-label>{{objectname =='Case'?item.CaseNumber:item.Name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div style="text-align:center" *ngIf="listobj && !listobj.length ">
+    <p style="text-align:center;color:rgb(218, 60, 60)">No records found</p>
+  </div>
+  
+</ion-content>

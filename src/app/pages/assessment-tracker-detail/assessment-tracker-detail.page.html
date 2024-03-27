@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar class="header-background-color">
+    
+  <!-- <ion-buttons slot="start">
+      <ion-button (click)="backToList()">
+        <ion-icon style="color: white;" name="arrow-back" ></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu();checkofflineData();">
+        <ion-icon style="color: white;font-size:30px !important;"  name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="color: white;" >{{data.ExAM_Tracker__Label__c}}</ion-title>
+    <img  class="showicon" mode="ios"> 
+  
+
+   <!--<ion-buttons slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon style="color: white;" name="cog"></ion-icon>
+      </ion-button>
+    </ion-buttons>-->
+  </ion-toolbar>
+</ion-header>
+<ion-content  class="slds" overflow-scroll="true">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-searchbar [(ngModel)]='searchtext'  ></ion-searchbar>
+      </ion-col>
+     <!--<ion-col size-sm='2' size-md='6' size-lg='4' size-xl='3'>
+        <ion-icon (click)="openruntimefilter();" name="funnel"></ion-icon>
+      </ion-col>--> 
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="rows" class="showsortTable">
+    <ion-list  style="border:solid 1px rgb(212, 202, 202)" *ngFor="let row of rows.reverse() | filter:searchtext | orderBy : orderbyfield;let i = index;" >
+      <ion-item *ngFor="let column of columns" [class]="{notsynced :(row['isEdited']&& HassyncOption)?true:false, synced:((!row['isEdited'])&& HassyncOption)?true:false}">
+      <ion-grid>
+          <ion-row >
+            <ion-col size="6">
+              <ion-label>{{column.prop}}</ion-label>
+            </ion-col>
+            <ion-col size="5" style="display:grid;">
+              <div style="text-align:left;display:flex;" *ngIf="(column.prop == 'Object' && column.columntype && (column.behaviour =='Display Object Icon' || column.behaviour =='Display Object Label' || column.behaviour == 'Display Object Label and Icon'))">
+                <span *ngIf="(column.columntype && row.Object && (column.behaviour == 'Display Object Label and Icon' || column.behaviour == 'Display Object Icon'))" class="slds slds-icon_container" [ngClass]="(iconWithclass && iconWithclass[row['attributes']['type']])?iconWithclass[row['attributes']['type']]:''" title="Description of icon when needed">
+                  <svg class="slds-icon" [ngClass]="(iconWithsvgclass && iconWithsvgclass[row['attributes']['type']])?iconWithsvgclass[row['attributes']['type']]:''" aria-hidden="true">
+                    <use attr.xlink:href="{{row.Object}}"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Description of icon when needed</span>
+                </span>
+               
+                <ion-label style="padding-left:10px;" *ngIf= "column.columntype && (column.behaviour =='Display Object Label and Icon' || column.behaviour == 'Display Object Label') && objanddescribeDetail[row['attributes']['type']]" >{{objanddescribeDetail[row['attributes']['type']].label}}</ion-label>
+              </div>
+                <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="(column.prop != 'Object' && (column.fldtype && column.fldtype == 'reference' && row[column.prop]) &&lookupdetailobj && lookupdetailobj[row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] && lookupRelationshipNameDetailObj && lookupRelationshipNameDetailObj[row['attributes']['type']] && lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]] && lookupdetailobj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]] && row[lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]])" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail):''">
+                  {{(lookupdetailobj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]) == 'Case'? row[lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]]['CaseNumber']:row[lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]]['Name']}}
+                </ion-label>
+
+                    <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="((column.fldtype && column.fldtype != 'reference' && column.fldtype == 'time') && column.prop != 'Object')" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail,row[column.prop]):''">
+                      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH:mm" [readonly]="true" [(ngModel)]="row[column.prop]" type="Time"></ion-datetime>
+                    </ion-label>
+                    <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="((column.fldtype && column.fldtype != 'reference' && column.fldtype == 'datetime') && column.prop != 'Object')" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail,row[column.prop]):''">{{row[column.prop]| date: 'dd/MM/yyyy H:mm'}}</ion-label>
+                    <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="((column.fldtype && (column.fldtype != 'reference' && column.fldtype != 'datetime' && column.fldtype != 'time')) && column.prop != 'Object')" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail,row[column.prop]):''">{{row[column.prop]}}</ion-label>
+              </ion-col>
+              <ion-col size="1">
+              <ion-buttons   class="ion-align-items-end">
+                <ion-button  ion-button icon-only style="color:gray" *ngIf ="column.behaviour =='Editable Inline' && labelwithFieldDetail[column.prop] && (labelwithFieldDetail[column.prop][row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] !='')  && labelwithFieldDetail[column.prop][row['attributes']['type']] != null" (click)="editsaverecord($event,i,row,column.fldtype,column.prop,objName,labelwithFieldDetail)">
+                  <ion-icon class="pencilSize" style="height: 30px;" size="large" name="pencil-sharp"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+
+          </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  </div>
+  <div class="showlongTable" style="max-width:100%;max-height:100%;overflow-x:auto;overflow-y:auto;">
+    <table *ngIf="rows" style="border-collapse: collapse !important;" class="slds-table slds-table--bordered " >
+      <thead>
+        <tr class="slds-text-heading--label" >
+            <th class="slds-is-sortable" scope="col" *ngFor="let label of columns;" (click)="clicktosort(label.prop)" >
+                <div class="slds-truncate">
+                    <span>{{label.prop}}</span>  
+                    <span class="slds-icon_container slds-icon-utility-arrowdown">
+                      <ion-img  *ngIf="selectedsortingobj && (selectedsortingobj.prop == label.prop) && selectedsortingobj.asc && !selectedsortingobj.desc " style="width:20px !important;height:18px !important;" [src]="uparrow"></ion-img>
+                      <ion-img  *ngIf="selectedsortingobj && (selectedsortingobj.prop == label.prop) && selectedsortingobj.desc && !selectedsortingobj.asc" style="width:20px !important;height:18px !important;" [src]="downarrow"></ion-img>                                        
+                    </span>  
+                </div>
+            </th>
+        </tr>
+    </thead>
+      <tbody>
+          <tr class="slds-hint-parent" *ngFor="let row of rows | filter:searchtext | orderBy : orderbyfield;let i = index;"  [class]="{notsynced :(row['isEdited']&& HassyncOption)?true:false, synced:((!row['isEdited'])&& HassyncOption)?true:false}" >
+            <td *ngFor="let column of columns" data-label = "label"  >
+                <div style="text-align:right;display:flex;" *ngIf="(column.prop == 'Object' && column.columntype && (column.behaviour =='Display Object Icon' || column.behaviour =='Display Object Label' || column.behaviour == 'Display Object Label and Icon'))">
+                  <span *ngIf="(column.columntype && row.Object && (column.behaviour == 'Display Object Label and Icon' || column.behaviour == 'Display Object Icon'))" class="slds slds-icon_container" [ngClass]="(iconWithclass && iconWithclass[row['attributes']['type']])?iconWithclass[row['attributes']['type']]:''" title="Description of icon when needed">
+                    <svg class="slds-icon" [ngClass]="(iconWithsvgclass && iconWithsvgclass[row['attributes']['type']])?iconWithsvgclass[row['attributes']['type']]:''" aria-hidden="true">
+                      <use attr.xlink:href="{{row.Object}}"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Description of icon when needed</span>
+                  </span>
+                  <ion-label style="padding-left:10px;" *ngIf= "column.columntype && (column.behaviour =='Display Object Label and Icon' || column.behaviour == 'Display Object Label') && objanddescribeDetail[row['attributes']['type']]" >{{objanddescribeDetail[row['attributes']['type']].label}}</ion-label>
+                </div>
+                <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="(column.prop != 'Object' && (column.fldtype && column.fldtype == 'reference' && row[column.prop]) &&lookupdetailobj && lookupdetailobj[row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] && lookupRelationshipNameDetailObj && lookupRelationshipNameDetailObj[row['attributes']['type']] && lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]] && lookupdetailobj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]] && row[lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]])" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail):''">
+                  {{(lookupdetailobj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]) == 'Case'? row[lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]]['CaseNumber']:row[lookupRelationshipNameDetailObj[row['attributes']['type']][labelwithFieldDetail[column.prop][row['attributes']['type']]]]['Name']}}
+                  <ion-buttons slot="end" style="display:inline-block">
+                    <ion-button   style="color:gray" *ngIf ="column.behaviour =='Editable Inline' && labelwithFieldDetail[column.prop] && (labelwithFieldDetail[column.prop][row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] !='')  && labelwithFieldDetail[column.prop][row['attributes']['type']] != null" (click)="editsaverecord($event,i,row,column.fldtype,column.prop,objName,labelwithFieldDetail)">
+                      <ion-icon class="pencilSize" style="height: 30px;" size="large" name="pencil-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-label>
+
+                <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="((column.fldtype && column.fldtype != 'reference' && column.fldtype == 'time') && column.prop != 'Object')" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail,row[column.prop]):''">
+                  <ion-datetime displayFormat="HH:mm A" pickerFormat="HH:mm" [readonly]="true" [(ngModel)]="row[column.prop]" type="Time"></ion-datetime>
+                 <ion-buttons slot="end" style="display:inline-block">
+                    <ion-button   style="color:gray" *ngIf ="column.behaviour =='Editable Inline' && labelwithFieldDetail[column.prop] && (labelwithFieldDetail[column.prop][row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] !='')  && labelwithFieldDetail[column.prop][row['attributes']['type']] != null" (click)="editsaverecord($event,i,row,column.fldtype,column.prop,objName,labelwithFieldDetail)">
+                      <ion-icon class="pencilSize" style="height: 30px;" size="large" name="pencil-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-label>
+                <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="((column.fldtype && column.fldtype != 'reference' && column.fldtype == 'datetime') && column.prop != 'Object')" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail,row[column.prop]):''">
+                  {{row[column.prop]| date: 'dd/MM/yyyy H:mm'}}
+                  <ion-buttons slot="end" style="display:inline-block">
+                    <ion-button   style="color:gray" *ngIf ="column.behaviour =='Editable Inline' && labelwithFieldDetail[column.prop] && (labelwithFieldDetail[column.prop][row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] !='')  && labelwithFieldDetail[column.prop][row['attributes']['type']] != null" (click)="editsaverecord($event,i,row,column.fldtype,column.prop,objName,labelwithFieldDetail)">
+                      <ion-icon class="pencilSize" style="height: 30px;" size="large" name="pencil-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-label>
+                <ion-label [ngStyle]="{'color':column.behaviour == 'Link to Root' ? '#4B7DB4' : '' }" *ngIf="((column.fldtype && (column.fldtype != 'reference' && column.fldtype != 'datetime' && column.fldtype != 'time')) && column.prop != 'Object')" (click)="column.behaviour == 'Link to Root' ? Linktorootmethodcall(i,row,column,labelwithFieldDetail[column.prop],labelwithFieldDetail,row[column.prop]):''">
+                  {{row[column.prop]}}
+                <ion-buttons slot="end" style="display:inline-block">
+                  <ion-button   style="color:gray" *ngIf ="column.behaviour =='Editable Inline' && labelwithFieldDetail[column.prop] && (labelwithFieldDetail[column.prop][row['attributes']['type']] && labelwithFieldDetail[column.prop][row['attributes']['type']] !='')  && labelwithFieldDetail[column.prop][row['attributes']['type']] != null" (click)="editsaverecord($event,i,row,column.fldtype,column.prop,objName,labelwithFieldDetail)">
+                      <ion-icon class="pencilSize" style="height: 30px;" size="large" name="pencil-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-label>
+
+               
+              </td>
+          </tr>
+      </tbody>
+   </table>
+  </div>
+<div *ngIf="rows">
+  <div class="slds-m-top_large" *ngIf="rows && !(rows | filter:searchtext | orderBy : orderbyfield).length" style="text-align:center" >
+    <p>No Records Found </p>
+  </div>  
+</div>
+
+  
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>
+<ion-footer  >
+ 

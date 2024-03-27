@@ -1,0 +1,127 @@
+.datatable-scroll{
+    display: inherit !important;
+}
+.header-background-color{
+    --background: #4B7DB4;
+}
+.showsortTable{
+    display:none;
+}
+.showlongTable{
+    display:none;
+}
+@media only screen and (orientation:landscape){
+    .showsortTable{
+        display:none;
+    }
+    .showlongTable{
+        display:block;
+    }
+}
+@media only screen and (orientation:portrait){
+
+    .showsortTable{
+        display:block;
+    }
+    .showlongTable{
+        display:none;
+    }
+
+   /* @media only screen and (max-device-width:767px){
+        .showsortTable{
+            display:block;
+        }
+        .showlongTable{
+            display:none;
+        }
+    }
+    @media only screen and (min-device-width:767px){
+        .showsortTable{
+            display:none;
+        }
+        .showlongTable{
+            display:block;
+        }
+    }*/
+}
+.my-custom-class{ --max-height:350px; }
+.buttoncolor{
+    --background: #4B7DB4;
+    --background-activated: var(--ion-color-primary-shade, #4B7DB4) !important;
+    --background-focused: var(--ion-color-primary-shade, #4B7DB4) !important;
+    --background-hover: var(--ion-color-primary-tint, #4B7DB4) !important;
+}
+.customfooter{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border-top: 2px solid #c7c5c5;
+
+}
+.md .showicon{
+    display: none;
+}
+.ios img {
+    background-size: contain !important;
+    width: 50px;
+    height: 50px;
+    line-height: 40px;
+    padding-left: 50px;
+    margin-left:5px !important;
+    background: url('../../images/ExAMAT.png') no-repeat right center;
+    float:right;
+}
+.md ion-title {
+    background-size: contain !important;
+    line-height: 50px;
+    background: url('../../images/ExAMAT.png') no-repeat right center;
+    background-position:10px !important;
+    text-align: center !important;
+    float:right;
+}
+
+@media only screen and (orientation:portrait){
+
+    /* added for iphone 11 pro and max */
+    @media only screen and (min-device-width:375px) and (max-device-width:414px) and (min-device-height:812px) and (max-device-height:896px){
+    
+        .iphone11footerHeight{
+        height: 70px !important;
+        }
+       
+    }
+}
+
+.notsynced{
+    border-left-color: red !important;
+    border-left-width: 15px !important;
+    border-left-style: solid !important;
+    
+}
+
+.synced {
+    border-left-color: green !important;
+    border-left-width: 15px !important;
+    border-left-style: solid !important;
+
+}
+.borderline{
+    min-width: 100%;
+    border: 1px solid #c7c5c5;
+    padding-left: 5px !important;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+.linkstyle {
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
+@media only screen and (max-device-width:560px){
+    .pencilSize{
+      width: 24px !important;
+      height: 22px !important;
+    }
+    .popover-content{
+        width: min-content !important;
+    }
+}

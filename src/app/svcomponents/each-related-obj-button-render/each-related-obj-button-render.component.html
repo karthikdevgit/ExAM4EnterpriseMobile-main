@@ -1,0 +1,39 @@
+<div
+        *ngIf="
+          schemaViewData &&
+          schemaViewData[currentIndex] &&
+          schemaViewData[currentIndex].relatedObjectsIndex &&
+          schemaViewData[currentIndex].relatedObjectsIndex.length > 0
+        "
+      >
+        <ion-col
+          *ngFor="
+            let relatedObjectsIndex of schemaViewData[currentIndex]
+              .relatedObjectsIndex
+          "
+        >
+          <ion-button
+            *ngIf="
+              schemaViewData &&
+              schemaViewData[relatedObjectsIndex] &&
+              schemaViewData[relatedObjectsIndex].childAssessableObjs &&
+              schemaViewData[relatedObjectsIndex].childAssessableObjs[
+                eachassessableObject.Id
+              ] &&
+              schemaViewData[relatedObjectsIndex].childAssessableObjs[
+                eachassessableObject.Id
+              ].length > 0
+            "
+            (click)="$event.stopPropagation();relatedObject(schemaViewData,relatedObjectsIndex,eachassessableObject.Id,eachassessableObject,false,$event)"
+          >
+            {{
+              schemaViewData[relatedObjectsIndex].childAssessableObjs[
+                eachassessableObject.Id
+              ].length
+            }}
+            {{
+              schemaViewData[relatedObjectsIndex].schemaTemplatepluralLabel
+            }}</ion-button
+          >
+        </ion-col>
+      </div>

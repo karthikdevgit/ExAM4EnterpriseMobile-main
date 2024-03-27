@@ -1,0 +1,46 @@
+
+
+<ion-content class="paddingtop">
+  <ion-item >
+    <ion-select class=" borderline slds-col slds-size_large" *ngIf = "fieldtype && fieldtype == 'picklist' && fieldtype != 'reference'" [(ngModel)]="temrecorddetail[field]"  >
+      <ion-select-option  class="slds-select select " *ngFor="let fieldata of fieldwithDetail[field].picklistValues" value="{{fieldata.value}}">{{fieldata.label}}
+      </ion-select-option>
+    </ion-select>   
+                   
+  <ion-select  class="borderline slds-col  slds-size_large" multiple="true"  *ngIf = "fieldtype && fieldtype == 'multipicklist'" [(ngModel)]="temrecorddetail[field]"  >
+     <ion-select-option class="slds-select select " *ngFor="let field of fieldwithDetail[field].picklistValues" value="{{field.value}}">{{field.label}}
+     </ion-select-option>
+ </ion-select>
+ 
+ 
+  <ion-input class="borderline slds-col " *ngIf = "fieldtype && fieldtype  == 'number' || fieldtype== 'phone' || fieldtype == 'double' || fieldtype == 'int' || fieldtype == 'currency'" type="number" [(ngModel)]="temrecorddetail[field]"></ion-input>
+  <ion-checkbox class="borderline slds-col " *ngIf = "fieldtype && fieldtype == 'boolean'"  [(ngModel)]="temrecorddetail[field]"></ion-checkbox> 
+  <ion-input class="borderline slds-col " *ngIf = "fieldtype && fieldtype  == 'string'" [(ngModel)]="temrecorddetail[field]"  ></ion-input>
+  <ion-input  class="borderline slds-col " *ngIf = "fieldtype && fieldtype  == 'reference'" [(ngModel)]="temrecorddetail[field]"  ></ion-input>
+  <ion-textarea  class="borderline slds-col " *ngIf = "fieldtype && fieldtype  == 'textarea'"  [(ngModel)]="temrecorddetail[field]"></ion-textarea> 
+  <ion-input  class="borderline slds-col " *ngIf = "fieldtype && fieldtype  == 'text'" [(ngModel)]="temrecorddetail[field]"  ></ion-input>
+
+  <!--<div class="slds">
+            <p style="color:#e6d478" *ngIf = "labelwithfield[label.prop] && labelwithfield[label.prop].type == 'reference' && !lookupsearchObj[label.prop] && (labelwithfield[label.prop]['referenceTo'][0] !='Case' ? rows[labelwithfield[label.prop]['referenceTo'][0]]['Name']: rows[labelwithfield[label.prop]['referenceTo'][0]]['CaseNumber']) && !(network.type != 'none')">
+              Reference type field edit not supported in offline mode
+            </p>
+        </div>
+          <!--ion-input  class="borderline"  *ngIf = "fieldtype == 'richtext'" [(ngModel)]="recordetail[col]" clearInput ></ion-input>
+          <ion-input  class="borderline"  *ngIf = "fieldtype == 'text'" [(ngModel)]="recordetail[col]" clearInput ></ion-input>
+          <ion-datetime class="borderline"  *ngIf = "fieldtype == 'time'" displayFormat="hh:mm:ss" pickerFormat="hh:mm:ss" [(ngModel)]="recordetail[col]" type="Time"></ion-datetime>
+          <ion-input  class="borderline"  *ngIf = "fieldtype == 'number' || fieldwithDetail[col].type == 'phone' || fieldwithDetail[col].type == 'double' || fieldwithDetail[col].type == 'int' || fieldwithDetail[col].type == 'currency')" type="number" [(ngModel)]="recordetail[col]"></ion-input>
+        
+          <ion-input  class="borderline"  *ngIf = "fieldtype== 'string'" [(ngModel)]="recordetail[col]" clearInput ></ion-input>
+          <ion-textarea  class="borderline" *ngIf = "fieldtype == 'textarea'"  [(ngModel)]="recordetail[col]"></ion-textarea-->
+    <ion-buttons>
+    <ion-button ion-button icon-only (click)="saverecord(true,field)">
+    <ion-icon  item-right name="checkmark-outline"></ion-icon>
+    </ion-button>
+</ion-buttons>
+    <ion-buttons>
+    <ion-button ion-button icon-only  (click)="saverecord(false)">
+    <ion-icon item-right name="close-outline"></ion-icon>
+    </ion-button>
+</ion-buttons>
+</ion-item>
+</ion-content>

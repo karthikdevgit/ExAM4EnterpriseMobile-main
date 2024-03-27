@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+   <!--ion-title>Assignment Managers for {{assessableObject.Name}}</ion-title-->
+   <ion-title>Assignment Managers for releated level</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div *ngIf="schemaViewData[level+1].amWithAssessableIdMap[assessableObject.AIM_Property__c] !== undefined">
+    <ion-card *ngFor="let am of schemaViewData[level+1].amWithAssessableIdMap[assessableObject.AIM_Property__c]" expand="block">
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-card-title slot="start">{{assessableObject.Name}}</ion-card-title>
+          <ion-card-subtitle slot="end">{{assessableObject.ExAM__Status__c}}</ion-card-subtitle>
+        </ion-item>
+      </ion-card-header>
+        <!-- <ion-row>
+          <ion-col>
+            <p>{{schemaViewData[0].ViewObjectFieldSet[9].label}}<br>{{assessableObject.ExAM_Inspection__Inspection_Unsuccessful_Reason__c}}</p>
+          </ion-col>
+          <ion-col>
+            <p>{{schemaViewData[0].ViewObjectFieldSet[10].label}}<br>{{assessableObject.ExAM_Inspection__Total_Number_of_Buildings__c}}</p>
+          </ion-col>
+          <ion-col>
+            <p>{{schemaViewData[0].ViewObjectFieldSet[11].label}}<br>{{assessableObject.ExAM_Inspection__Total_Number_of_Units__c}}</p>
+          </ion-col>
+        </ion-row> -->
+        <!--ion-row>
+          <ion-col>
+            <p>{{schemaViewData[0].ViewObjectFieldSet[12].label}}<br>{{formatDate(assessableObject.ExAM__Field_Start_Time__c)}}</p>
+          </ion-col>
+          <ion-col>
+            <p>{{schemaViewData[0].ViewObjectFieldSet[13].label}}<br>{{formatDate(assessableObject.ExAM__Field_End_Time__c)}}</p>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-buttons slot="end">
+          <ion-button (click)="presentActions()">      
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+          </ion-button> -->
+        <!-- </ion-buttons> -->
+        <!--ion-row>
+  
+          <!-- <ion-col>
+            <ion-button *ngIf="properties[assessableObject.Id].length > 1" expand="block">{{properties[assessableObject.Id].length}} Properties</ion-button>
+            <ion-button *ngIf="properties[assessableObject.Id].length === 1" expand="block">1 Property</ion-button>
+          </ion-col>
+        
+          <ion-col>
+            <ion-button *ngFor="let a of schemaViewData[0].amWithAssessableIdMap[assessableObject.Id]" expand="block">{{a.ExAM__Assessment_Template_Type__c}}</ion-button>
+          </ion-col> -->
+        <!--/ion-row> 
+    </ion-card>
+  </div>
+  <div *ngIf="schemaViewData[level+1].amWithAssessableIdMap[assessableObject.AIM_Property__c] === undefined">
+    <div>
+      <ion-label style="height: 100%; display: flex; align-items: center; justify-content: center;">No records found</ion-label>
+    </div>
+  </div> -->
+
+<div>
+  <ion-card *ngFor="let am of amListData" (click)=openRelatedAMsDetailPage(am) expand="block">
+    <ion-card-header>
+      <ion-item lines="none">
+        <ion-card-title slot="start">{{am.Name}}</ion-card-title>
+        <ion-card-subtitle slot="end">{{am.ExAM__Status__c}}</ion-card-subtitle>
+      </ion-item>
+    </ion-card-header>
+    </ion-card>
+</div>
+  
+</ion-content>

@@ -1,0 +1,139 @@
+
+<div *ngIf="schemaViewData && schemaViewData[currentIndex] && schemaViewData[currentIndex].optionConfigDetailsMap && (!schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView || schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView == 'false')">
+  <ion-card>
+    
+    <ion-card-header>
+        <ion-item lines="none">
+          <div *ngIf="
+          (!schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView || schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView == 'false')  && ishaveChild(schemaViewData,currentIndex,eachassessableObject)" (click)="RelatedChildRendercall()">
+        
+              <div>
+                <ion-icon *ngIf="!isHaveChild" name="caret-forward-outline"></ion-icon>
+                <ion-icon *ngIf="isHaveChild" name="caret-down-outline"></ion-icon>
+              </div>
+          </div>
+        <ion-card-title >{{
+          eachassessableObject.Name
+        }}</ion-card-title>
+      </ion-item>
+    </ion-card-header>
+    <ion-row>
+      <ion-col
+        *ngFor="
+          let ObjectField of schemaViewData[currentIndex].ViewObjectFieldSet
+        "
+      >
+        <p *ngIf="eachassessableObject && eachassessableObject[ObjectField.fieldPath]">
+          {{ ObjectField.label }}<br />{{
+            eachassessableObject[ObjectField.fieldPath]
+          }}
+        </p>
+      </ion-col>
+    </ion-row>
+    <app-each-related-obj-button-render [eachassessableObject]="eachassessableObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-each-related-obj-button-render>
+    <app-each-ambutton-render [eachassessableObject]="eachassessableObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-each-ambutton-render>
+    <div *ngIf="schemaViewData && schemaViewData[currentIndex] && schemaViewData[currentIndex].optionConfigDetailsMap && (schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView && (schemaViewData[currentIndex].optionConfigDetailsMap.disableRelatedAM == 'false' || !schemaViewData[currentIndex].optionConfigDetailsMap.disableRelatedAM))">
+      <div
+      
+      *ngIf="
+      schemaViewData &&
+      schemaViewData[currentIndex] &&
+      schemaViewData[currentIndex].amWithAssessableIdMap &&
+      schemaViewData[currentIndex].amWithAssessableIdMap[
+      eachassessableObject.Id
+      ] &&
+      schemaViewData[currentIndex].amWithAssessableIdMap[
+      eachassessableObject.Id
+      ].length > 0
+    "
+      >
+      <div
+      *ngFor="
+      let am of schemaViewData[currentIndex].amWithAssessableIdMap[
+        eachassessableObject.Id]
+    "
+      >
+      <app-each-amrender [eachamdetail]="am" [eachassessableObject]="eachassessableObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-each-amrender>
+    </div>
+    </div>
+    </div>
+    </ion-card>
+  
+    <div  *ngIf="isHaveChild">
+      <div
+        *ngIf="
+          schemaViewData &&
+          schemaViewData[currentIndex] &&
+          schemaViewData[currentIndex].relatedObjectsIndex &&
+          schemaViewData[currentIndex].relatedObjectsIndex.length > 0
+        "
+      >
+        <ion-col
+          *ngFor="
+            let relatedObjectsIndex of schemaViewData[currentIndex]
+              .relatedObjectsIndex
+          "
+        >
+        <div *ngIf="relatedObjectsIndex != 0 && eachassessableObject && eachassessableObject.Id && schemaViewData[relatedObjectsIndex] && schemaViewData[relatedObjectsIndex].childAssessableObjs && schemaViewData[relatedObjectsIndex].childAssessableObjs[eachassessableObject.Id]">
+          <div *ngFor="let parentassObject of schemaViewData[relatedObjectsIndex].childAssessableObjs[eachassessableObject.Id]">
+         
+          <app-each-object-render [eachassessableObject]="parentassObject" [schemaViewData]="schemaViewData" [currentIndex]="relatedObjectsIndex" [isfromTreeView]="schemaViewData[relatedObjectsIndex].optionConfigDetailsMap.disableTreeView"></app-each-object-render>
+        </div>
+      </div>
+        </ion-col>
+      </div>
+    </div>
+</div>
+<div *ngIf="schemaViewData && schemaViewData[currentIndex] && schemaViewData[currentIndex].optionConfigDetailsMap && (schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView && schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView == 'true')">
+<ion-card>
+<ion-card-header>
+  <ion-item lines="none">
+    <ion-card-title slot="start">{{
+      eachassessableObject.Name
+    }}</ion-card-title>
+  </ion-item>
+</ion-card-header>
+<ion-row>
+  <ion-col
+    *ngFor="
+      let ObjectField of schemaViewData[currentIndex].ViewObjectFieldSet
+    "
+  >
+    <p *ngIf="eachassessableObject && eachassessableObject[ObjectField.fieldPath]">
+      {{ ObjectField.label }}<br />{{
+        eachassessableObject[ObjectField.fieldPath]
+      }}
+    </p>
+  </ion-col>
+</ion-row>
+<app-each-related-obj-button-render [eachassessableObject]="eachassessableObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-each-related-obj-button-render>
+<app-each-ambutton-render [eachassessableObject]="eachassessableObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-each-ambutton-render>
+<div *ngIf="schemaViewData && schemaViewData[currentIndex] && schemaViewData[currentIndex].optionConfigDetailsMap && (schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView && (schemaViewData[currentIndex].optionConfigDetailsMap.disableRelatedAM == 'false' || !schemaViewData[currentIndex].optionConfigDetailsMap.disableRelatedAM))">
+  disable Am  false--- {{schemaViewData[currentIndex].optionConfigDetailsMap.disableRelatedAM}}
+  <div
+  
+  *ngIf="
+  schemaViewData &&
+  schemaViewData[currentIndex] &&
+  schemaViewData[currentIndex].amWithAssessableIdMap &&
+  schemaViewData[currentIndex].amWithAssessableIdMap[
+  eachassessableObject.Id
+  ] &&
+  schemaViewData[currentIndex].amWithAssessableIdMap[
+  eachassessableObject.Id
+  ].length > 0
+"
+  >
+  <div
+  *ngFor="
+  let am of schemaViewData[currentIndex].amWithAssessableIdMap[
+    eachassessableObject.Id]
+"
+  >
+  <app-each-amrender [eachamdetail]="am" [eachassessableObject]="eachassessableObject" [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-each-amrender>
+</div>
+</div>
+</div>
+</ion-card>
+
+</div>

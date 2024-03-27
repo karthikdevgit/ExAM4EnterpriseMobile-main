@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        {{assessableObject.Name}}
+      </ion-col>
+      </ion-row>
+      <ion-row>
+      <ion-col>
+        <ion-input value="{{assessableObject.ExAM_Inspection__Inspection_Status__c}}" [(ngModel)]="assessableObject.ExAM_Inspection__Inspection_Status__c"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        {{schemaViewData[0].ViewObjectFieldSet[9].label}}
+      </ion-col>
+      <ion-col>
+        <ion-input value="{{assessableObject.ExAM_Inspection__Inspection_Unsuccessful_Reason__c}}" [(ngModel)]="assessableObject.ExAM_Inspection__Inspection_Unsuccessful_Reason__c"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+       {{schemaViewData[0].ViewObjectFieldSet[10].label}}
+      </ion-col>
+      <ion-col>
+        <ion-input value="{{assessableObject.ExAM_Inspection__Total_Number_of_Buildings__c}}" [(ngModel)]="assessableObject.ExAM_Inspection__Total_Number_of_Buildings__c"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        {{schemaViewData[0].ViewObjectFieldSet[11].label}}
+      </ion-col>
+      <ion-col>
+        <ion-input value="{{assessableObject.ExAM_Inspection__Total_Number_of_Units__c}}" [(ngModel)]="assessableObject.ExAM_Inspection__Total_Number_of_Units__c"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        {{schemaViewData[0].ViewObjectFieldSet[12].label}}
+      </ion-col>
+      <ion-col>
+        <ion-input value="{{formatDate(assessableObject.ExAM_Inspection__Inspection_Start_Date_Time__c)}}" [(ngModel)]="assessableObject.ExAM_Inspection__Inspection_Start_Date_Time__c"></ion-input>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        {{schemaViewData[0].ViewObjectFieldSet[13].label}}
+      </ion-col>
+      <ion-col>
+        <ion-input value="{{formatDate(assessableObject.ExAM_Inspection__Inspection_Start_End_Time__c)}}" [(ngModel)]="assessableObject.ExAM_Inspection__Inspection_Start_End_Time__c"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-col>
+    <ion-button expand="block" (click)="cancel()">Cancel</ion-button>
+    <ion-button expand="block"  (click)="saveSchemaObject(assessableObject)">Save</ion-button>
+  </ion-col>
+</ion-content>

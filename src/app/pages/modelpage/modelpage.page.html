@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar class="header-background-color">
+    <ion-title style="color: white;" >{{objName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form *ngIf="fiedsetiseditable" [formGroup]="loginForm" novalidate>
+ 
+ <ion-list  class="slds-col--padded slds-size--1-of-1 slds-medium-size--12-of-12 slds-large-size--12-of-12" *ngFor="let col of fieldsetdata"  [ngClass]=" (fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].updateable) ? fieldwithDetail[col.fieldpath].updateable : ''" >
+    <ion-item *ngIf="(!(fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].updateable))" >
+           
+      <div class="slds-form-element">
+        <label  style ="font-size:1rem !important;" class="slds-form-element__label" for="text-input-id-1">{{col.Label}}</label>
+        <div class="slds-form-element__control">
+          
+          
+         
+          <span *ngIf="((fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type != 'reference' && fieldwithDetail[col.fieldpath].type == 'time') )">{{rows[col.fieldpath]| date: 'H:mm'}}</span>
+          <span *ngIf="((fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type != 'reference' &&  fieldwithDetail[col.fieldpath].type == 'datetime') )">{{rows[col.fieldpath]| date: 'dd/MM/yyyy H:mm'}}</span>
+          <span *ngIf="((fieldwithDetail[col.fieldpath] && ( fieldwithDetail[col.fieldpath].type != 'reference' &&  fieldwithDetail[col.fieldpath].type != 'datetime' &&  fieldwithDetail[col.fieldpath].type != 'time')) )">{{rows[col.fieldpath]}}</span>
+        </div>
+      </div>
+     
+    </ion-item>
+
+    <ion-item *ngIf="(fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].updateable )" >
+     
+      <div style ="width:100% !important;" class="slds-form-element">
+        <label  style ="font-size:1rem !important;" class="slds-form-element__label" for="text-input-id-1">{{fieldwithDetail[col.fieldpath].label}}</label>
+        <p class="error-message" *ngIf="!fieldwithDetail[col.fieldpath].nillable" style="display:inline-block;">*</p>
+        <div class="error-message" *ngIf="(isSubmitted && loginForm.controls && loginForm.controls[col.fieldpath] && loginForm.controls[col.fieldpath].errors && loginForm.controls[col.fieldpath].errors.required) || (loginForm.controls && loginForm.controls[col.fieldpath] && loginForm.controls[col.fieldpath].touched && loginForm.controls[col.fieldpath].errors && loginForm.controls[col.fieldpath].errors.required)" >
+        The field is required.
+        </div>
+        <div class="slds-form-element__control">
+     
+            <div class="error-message" *ngIf="fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'email' && ((isSubmitted && loginForm.controls && loginForm.controls[col.fieldpath] && loginForm.controls[col.fieldpath].errors && loginForm.controls[col.fieldpath].errors.pattern) || (loginForm.controls && loginForm.controls[col.fieldpath] && loginForm.controls[col.fieldpath].touched && loginForm.controls[col.fieldpath].errors && loginForm.controls[col.fieldpath].errors.pattern))" >
+                Invaild email address
+              </div>
+              <div class="error-message" *ngIf="fieldwithDetail[col.fieldpath] && (fieldwithDetail[col.fieldpath].type == 'number' || fieldwithDetail[col.fieldpath].type == 'phone' || fieldwithDetail[col.fieldpath].type == 'double' || fieldwithDetail[col.fieldpath].type == 'int' || fieldwithDetail[col.fieldpath].type == 'currency') && ((isSubmitted && loginForm.controls && loginForm.controls[col.fieldpath] && loginForm.controls[col.fieldpath].errors && loginForm.controls[col.fieldpath].errors.pattern) || (loginForm.controls && loginForm.controls[col.fieldpath] && loginForm.controls[col.fieldpath].touched && loginForm.controls[col.fieldpath].errors && loginForm.controls[col.fieldpath].errors.pattern))" >
+                Invaild {{fieldwithDetail[col.fieldpath].type}}
+              </div>
+            <ion-select  [formControlName]="col.fieldpath" class="borderline" *ngIf = "fieldwithDetail[col.fieldpath] &&fieldwithDetail[col.fieldpath].type == 'picklist'" [(ngModel)]="rows[col.fieldpath]"   (ionChange)="editedfieldmethod(col.fieldpath)">
+                <ion-select-option *ngFor="let field of fieldwithDetail[col.fieldpath].picklistValues" value="{{field.value}}">{{field.label}}
+                </ion-select-option>
+            </ion-select>             
+            <ion-select [formControlName]="col.fieldpath" class="borderline"  multiple="true"  *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'multipicklist'" [(ngModel)]="rows[col.fieldpath]"  (ionChange)="editedfieldmethod(col.fieldpath)">
+               <ion-select-option *ngFor="let field of fieldwithDetail[col.fieldpath].picklistValues" value="{{field.value}}">{{field.label}}
+               </ion-select-option>
+           </ion-select>
+            <ion-list  [formControlName]="col.fieldpath" *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'checkbox'" (ionChange)="editedfieldmethod(col.fieldpath)" >  
+              <ion-item *ngFor="let field of fieldwithDetail[col.fieldpath].checkboxValues">  
+                <ion-label>{{field.value}}</ion-label>  
+                <ion-checkbox [disabled] = "fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable"  [(ngModel)]="field.isChecked"></ion-checkbox>  
+              </ion-item>  
+            </ion-list>
+            <ion-input [formControlName]="col.fieldpath" class="borderline" [disabled]="fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable"  *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'email'" [(ngModel)]="rows[col.fieldpath]" type = "email" (ionChange)="editedfieldmethod(col.fieldpath)"></ion-input>
+            <ion-input  [formControlName]="col.fieldpath" class="borderline" [disabled]="fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable" *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'richtext'" [(ngModel)]="rows[col.fieldpath]"  (ionChange)="editedfieldmethod(col.fieldpath)"></ion-input>
+            <ion-input [formControlName]="col.fieldpath"  class="borderline" [disabled]="fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable" *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'text'" [(ngModel)]="rows[col.fieldpath]"  (ionChange)="editedfieldmethod(col.fieldpath)"></ion-input>
+            <ion-datetime [formControlName]="col.fieldpath" class="borderline"  *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'time'" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="rows[col.fieldpath]" type="Time" (ionChange)="editedfieldmethod(col.fieldpath)"></ion-datetime>
+            <ion-input  [formControlName]="col.fieldpath" class="borderline" [disabled] = "(fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable)" *ngIf = "fieldwithDetail[col.fieldpath] && (fieldwithDetail[col.fieldpath].type == 'number' || fieldwithDetail[col.fieldpath].type == 'phone' || fieldwithDetail[col.fieldpath].type == 'double' || fieldwithDetail[col.fieldpath].type == 'int' || fieldwithDetail[col.fieldpath].type == 'currency')" type="number" [(ngModel)]="rows[col.fieldpath]" (ionChange)="editedfieldmethod(col.fieldpath)"></ion-input>
+            <ion-checkbox [formControlName]="col.fieldpath" *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'boolean'"  [(ngModel)]="rows[col.fieldpath]"></ion-checkbox> 
+            <ion-datetime [formControlName]="col.fieldpath" class="borderline" *ngIf = "fieldwithDetail[col.fieldpath] && (fieldwithDetail[col.fieldpath].type == 'date'|| fieldwithDetail[col.fieldpath].type =='datetime')" displayFormat="MM/DD/YYYY"  [(ngModel)]="rows[col.fieldpath]" (ionChange)="editedfieldmethod(col.fieldpath)"></ion-datetime>
+            <ion-input  [formControlName]="col.fieldpath" class="borderline" [disabled] = "(fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable)" *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'string'" [(ngModel)]="rows[col.fieldpath]"   (ionChange)="editedfieldmethod(col.fieldpath)"></ion-input>
+            <ion-textarea [formControlName]="col.fieldpath"  class="borderline" [disabled] = "(fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable)" *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'textarea'"  [(ngModel)]="rows[col.fieldpath]" (ionChange)="editedfieldmethod(col.fieldpath)"></ion-textarea> 
+        
+               
+            <ion-input [formControlName]="col.fieldpath" class="borderline"  [disabled] = "(fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable )" *ngIf = "fieldwithDetail[col.fieldpath] && !fieldwithDetail[col.fieldpath].updateable  && fieldwithDetail[col.fieldpath].type == 'reference' && fieldwithDetail[col.fieldpath]['referenceTo'][0] && fieldwithDetail[col.fieldpath]['relationshipName'] && rows[fieldwithDetail[col.fieldpath]['relationshipName']] && rows[fieldwithDetail[col.fieldpath]['relationshipName']]['Name'] " [(ngModel)]=" fieldwithDetail[col.fieldpath]['referenceTo'][0] !='Case' ? rows[fieldwithDetail[col.fieldpath]['relationshipName']]['Name']: rows[fieldwithDetail[col.fieldpath]['referenceTo'][0]]['CaseNumber']"  > 
+
+            </ion-input> 
+            <span  *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].updateable && fieldwithDetail[col.fieldpath].type == 'reference' && fieldwithDetail[col.fieldpath]['referenceTo'][0] && fieldwithDetail[col.fieldpath]['relationshipName'] && rows[fieldwithDetail[col.fieldpath]['relationshipName']]  " (click)="getrecord($event,col.fieldpath,(fieldwithDetail[col.fieldpath]['referenceTo'][0] !='Case' ? rows[fieldwithDetail[col.fieldpath]['relationshipName']]['Name']: rows[fieldwithDetail[col.fieldpath]['relationshipName']]['CaseNumber']),fieldwithDetail[col.fieldpath]['referenceTo'][0],fieldwithDetail[col.fieldpath]['relationshipName']); editedfieldmethod(col.fieldpath);">
+              {{fieldwithDetail[col.fieldpath]['referenceTo'][0] !='Case' ? rows[fieldwithDetail[col.fieldpath]['relationshipName']]['Name']: rows[fieldwithDetail[col.fieldpath]['referenceTo'][0]]['CaseNumber']}}
+              </span>
+         </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</form>
+<div *ngIf="!fiedsetiseditable" >
+  <ion-list  class="slds-col--padded slds-size--1-of-1 slds-medium-size--12-of-12 slds-large-size--12-of-12" *ngFor="let col of fieldsetdata" >
+    <ion-item  >
+      <ion-grid>
+        <ion-row >
+          <ion-col size="6">
+           
+        <ion-label  style ="font-size:1rem !important;" class="slds-form-element__label" for="text-input-id-1">{{col.Label}}</ion-label>
+       
+          </ion-col>
+          <ion-col size="6" style="display:grid;">
+            <ion-label   *ngIf = "fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type == 'reference' && fieldwithDetail[col.fieldpath]['referenceTo'][0] && fieldwithDetail[col.fieldpath]['relationshipName'] && rows[fieldwithDetail[col.fieldpath]['relationshipName']]  " >
+              {{fieldwithDetail[col.fieldpath]['referenceTo'][0] !='Case' ? rows[fieldwithDetail[col.fieldpath]['relationshipName']]['Name']: rows[fieldwithDetail[col.fieldpath]['referenceTo'][0]]['CaseNumber']}}
+          </ion-label>
+          <ion-label *ngIf="fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type != 'reference' && fieldwithDetail[col.fieldpath].type == 'time'" >
+            <ion-datetime displayFormat="HH:mm A" pickerFormat="HH:mm" [readonly]="true" [(ngModel)]="rows[col.fieldpath]" type="Time"></ion-datetime>
+          </ion-label>
+          <ion-label  *ngIf="fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type != 'reference' && fieldwithDetail[col.fieldpath].type == 'datetime'">{{rows[col.fieldpath]| date: 'dd/MM/yyyy H:mm'}}</ion-label>
+          <ion-label *ngIf="fieldwithDetail[col.fieldpath] && fieldwithDetail[col.fieldpath].type  != 'reference' && fieldwithDetail[col.fieldpath].type  != 'datetime' && fieldwithDetail[col.fieldpath].type  != 'time'" >{{rows[col.fieldpath]}}</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>
+</div>
+</ion-content>
+<ion-footer >
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row *ngIf="fiedsetiseditable">
+        <ion-col size="6">
+          <a class="slds slds-col slds-button slds-button--neutral" style="width:100% !important;line-height:2rem !important" type="button" (click)="closeModal(true)" >Cancel</a>
+        </ion-col>
+        <ion-col size="6">
+          <a class="slds slds-col slds-button slds-button--brand" style="width:100% !important;line-height:2rem !important" type="button" (click)="closeModal(false)" >Save</a>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="!fiedsetiseditable">
+        <ion-col>
+          <a class="slds slds-col slds-button slds-button--neutral" style="width:100% !important;line-height:2rem !important" type="button" (click)="closeModal(true)" >Cancel</a>
+        </ion-col>
+       
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

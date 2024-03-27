@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Feedback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card *ngFor="let question of feedbackQuestions">
+  <ion-card-header>
+    {{question.sectionName}}
+  </ion-card-header>
+  <ion-label>
+    {{question.questionName}}
+  </ion-label>
+  <ion-input value=""></ion-input>
+</ion-card>
+<ion-col>
+  <ion-button expand="block" (click)="cancel()">Cancel</ion-button>
+  <ion-button expand="block">Save</ion-button>
+</ion-col>
+</ion-content>

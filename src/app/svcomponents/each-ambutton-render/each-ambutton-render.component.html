@@ -1,0 +1,30 @@
+<ion-row>
+  <div
+  
+  *ngIf="
+  schemaViewData &&
+  schemaViewData[currentIndex] &&
+  schemaViewData[currentIndex].amWithAssessableIdMap &&
+  schemaViewData[currentIndex].amWithAssessableIdMap[
+  eachassessableObject.Id
+  ] &&
+  schemaViewData[currentIndex].amWithAssessableIdMap[
+  eachassessableObject.Id
+  ].length > 0
+"
+  >
+    <ion-col
+      *ngFor="
+        let am of schemaViewData[currentIndex].amWithAssessableIdMap[
+          eachassessableObject.Id]
+      "
+      (click)=$event.stopPropagation();openRelatedAMsDetailPage(am)
+    >
+      <ion-button
+       *ngIf="
+              am &&
+              am.Name
+            ">{{ am.Name }}</ion-button>
+    </ion-col>
+  </div>
+</ion-row> 

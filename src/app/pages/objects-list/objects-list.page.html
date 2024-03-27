@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="currentSchemaViewDetail && currentSchemaViewDetail.schemaviewName" (click)="openAvailableSchemaViews()">{{currentSchemaViewDetail.schemaviewName}}</ion-title>
+  </ion-toolbar> 
+</ion-header>
+<ion-content>
+  <div *ngIf="schemaViewData && schemaViewData[currentIndex] && schemaViewData[currentIndex].optionConfigDetailsMap && (schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView || schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView == 'true')">
+    <app-tree-view-not-enabled  [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-tree-view-not-enabled>
+  </div>
+   <div *ngIf="schemaViewData && schemaViewData[currentIndex] && schemaViewData[currentIndex].optionConfigDetailsMap && (!schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView || schemaViewData[currentIndex].optionConfigDetailsMap.disableTreeView == 'false')">
+    <app-tree-view-enabled [schemaViewData]="schemaViewData" [currentIndex]="currentIndex"></app-tree-view-enabled>
+  </div> 
+</ion-content>

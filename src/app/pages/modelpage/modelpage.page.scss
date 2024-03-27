@@ -1,0 +1,31 @@
+.enable{
+    --ion-background-color: white;
+}
+.disable{
+    --ion-background-color:rgba(236, 236, 236, 0.32);
+}
+.header-background-color{
+    --background: #4B7DB4;
+  }
+.borderline{
+    min-width: 100%;
+    border: 1px solid #c7c5c5;
+    padding-left: 5px !important;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+.my-custom-class{ 
+    --max-height:350px;
+ }
+.removeShadowInput{
+    -webkit-appearance: none;
+}
+.buttoncolor{
+--background: #4B7DB4;
+--background-activated: var(--ion-color-primary-shade, #4B7DB4) !important;
+--background-focused: var(--ion-color-primary-shade, #4B7DB4) !important;
+--background-hover: var(--ion-color-primary-tint, #4B7DB4) !important;
+}
+.error-message {
+    color: var(--ion-color-danger);
+  }

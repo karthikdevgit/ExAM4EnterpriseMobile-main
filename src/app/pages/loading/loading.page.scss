@@ -1,0 +1,31 @@
+.header-background-color{
+    --background: #4B7DB4;
+}
+.loadingcontainer { 
+ 
+}
+
+.loadingcenter {
+  width:max-content;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.customfooter{
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+@media only screen and (orientation:portrait){
+
+  /* added for iphone 11 pro and max */
+  @media only screen and (min-device-width:375px) and (max-device-width:414px) and (min-device-height:812px) and (max-device-height:896px){
+  
+      .iphone11footerHeight{
+      height: 70px !important;
+      }
+     
+  }
+}
